@@ -19,7 +19,7 @@ public class Bomb : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {      
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Ally"))
         {
             //Supprimer le Game Object
              Destroy(gameObject);        
