@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Ally : MonoBehaviour
 {
     [SerializeField] private int initialHealth;
-    private int health;
+    private int allyHealth;
 
     public int Health
     {
-        get { return health; }
-        set { health = value; }
+        get { return allyHealth; }
+        set { allyHealth = value; }
     }
 
     private Bomb bombObject;
@@ -18,25 +18,25 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = initialHealth;
-        //Debug.Log("Player HP : " + health);
+        allyHealth = initialHealth;
+        //Debug.Log("Ally HP : " + allyHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Bomb"))
         {
-            //Debug.Log(gameObject.name + " a reçu une " + collision.collider.name + " sur la tête.");
+            Debug.Log(gameObject.name + " a reçu une " + collision.collider.name + " sur la tête.");
             //Récupération des infos du GO
             bombObject = GameObject.FindWithTag("Bomb").GetComponent<Bomb>();
             //Actualisation de la jauge de HP en fonction des dommages reçus
-            health -= bombObject.damage;  
+            allyHealth -= bombObject.damage;
         }
     }
 }
