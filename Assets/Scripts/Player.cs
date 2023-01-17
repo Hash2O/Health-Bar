@@ -5,21 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int initialHealth;
-    private int health;
+    [SerializeField] IntVariable health;
 
     public int Health
     {
-        get { return health; }
-        set { health = value; }
+        get { return health.value; }
+        private set { }
     }
-
-    private Bomb bombObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = initialHealth;
-        //Debug.Log("Player HP : " + health);
+        health.value = initialHealth;
     }
 
     // Update is called once per frame
@@ -28,15 +25,8 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void GetHurt(int damage)
     {
-        if (collision.collider.CompareTag("Bomb"))
-        {
-            //Debug.Log(gameObject.name + " a reçu une " + collision.collider.name + " sur la tête.");
-            //Récupération des infos du GO
-            bombObject = GameObject.FindWithTag("Bomb").GetComponent<Bomb>();
-            //Actualisation de la jauge de HP en fonction des dommages reçus
-            health -= bombObject.damage;  
-        }
+        health.value -= damage;
     }
 }

@@ -17,12 +17,16 @@ public class Bomb : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {      
-        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Ally"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
         {
-            //Supprimer le Game Object
-             Destroy(gameObject);        
+           other.gameObject.GetComponent<Player>().GetHurt(damage);
         }
+        else if (other.gameObject.tag == "Ally")
+        {
+            other.gameObject.GetComponent<Ally>().GetHurt(damage);
+        }
+        Destroy(gameObject);
     }
 }

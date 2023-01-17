@@ -5,24 +5,22 @@ using TMPro;
 
 public class HealthDisplay : MonoBehaviour
 {
-    private Player player;
+    public IntVariable playerHp;
+    public IntVariable allyHp;
 
     [SerializeField] private TextMeshProUGUI playerHealthDisplay;
+    [SerializeField] private TextMeshProUGUI allyHealthDisplay;
     // Start is called before the first frame update
     void Start()
     {
-        //Récupération du component (script) "Player"
-        player = GetComponent<Player>();
-
-
-        //Attribution des points de vie de départ
-        player.Health = 100;       
+      
     }
 
     // Update is called once per frame
     void Update()
     {
         //Actualisation de l'affichage de la jauge de HP
-        playerHealthDisplay.text = "Player HP : " + player.Health;
+        playerHealthDisplay.text = "Player HP : " + playerHp.value;
+        allyHealthDisplay.text = "Ally HP : " + allyHp.value;
     }
 }

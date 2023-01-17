@@ -22,12 +22,9 @@ public class AllyFollowPlayer : MonoBehaviour
         if (distance > 2f)
         {
             Debug.Log("Need to be closer of the player");
-            transform.Translate(playerDirection * Time.deltaTime);
+            //transform.position += playerDirection * 1f * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, playerDirection, 5f * Time.deltaTime);
         }
-        else if (distance < 2f)
-        {
-            Debug.Log("Need to stop here");
-            //Supprimer le Translate ici
-        }
+       
     }
 }

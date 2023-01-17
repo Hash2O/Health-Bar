@@ -16,7 +16,7 @@ public class AllyHealthDisplay : MonoBehaviour
 
 
         //Attribution des points de vie de départ
-        ally.Health = 50;
+        //ally.Health = 50;
     }
 
     // Update is called once per frame
