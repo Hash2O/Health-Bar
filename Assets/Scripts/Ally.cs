@@ -18,7 +18,7 @@ public class Ally : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allyHealth.value = initialHealth;
+        allyHealth.value = initialHealth;   //Possibilité mettre dans Awake
     }
 
     // Update is called once per frame
@@ -30,5 +30,17 @@ public class Ally : MonoBehaviour
     public void GetHurt(int damage)
     {
         allyHealth.value -= damage;
+        //Si les hp descendent à 0 ou moins, le player est désactivé
+        if (allyHealth.value <= 10)
+        {
+            Debug.Log("Ally is badly wounded !");
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+
+        if (allyHealth.value <= 0)
+        {
+            Debug.Log("Ally is dead. You're on your own !");
+            gameObject.SetActive(false);
+        }
     }
 }
